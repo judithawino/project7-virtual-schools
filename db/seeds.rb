@@ -9,5 +9,6 @@ puts "Seeding data"
 
 Exam.create(title: "Exam", exam_date: "3/4/2022", start_time: "8:30 a.m", duration: 60, course_id: 3)
 Exam.create(title: "Quiz", exam_date: "3/4/2022", start_time: "10:30 a.m", duration: 45, course_id: 3)
-Exam.create(title: "Assessment", exam_date: "3/4/2022", start_time: "12:30 a.m", duration: 60, course_id: 3)
+# Exam.create(title: "Assessment", exam_date: "3/4/2022", start_time: "12:30 a.m", duration: 60, course_id: 3)
+# Exam.create(title: "Assessment", exam_date: "3/4/2022", start_time: "12:30 a.m", duration: 60, course_id: 3)
 puts "completed Seeding data"
