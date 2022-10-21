@@ -24,6 +24,12 @@ class ExamsController < ApplicationController
         show
     end
 
+    def destroy
+        exams = find_exam
+        exams.destroy
+        head :no_content
+    end
+
     private
     def find_exam
         Exam.find(params[:id])
