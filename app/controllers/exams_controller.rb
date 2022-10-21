@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :exam_not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 
     # GET "/"
     def index
@@ -12,6 +13,11 @@ class ExamsController < ApplicationController
         render json: exams, status: :ok
     end
 
+    def create
+        exams = Exam.create!(exam_params)
+        render json: exams, status: :created
+    end
+
     private
     def find_exam
         Exam.find(params[:id])
@@ -19,4 +25,11 @@ class ExamsController < ApplicationController
     def exam_not_found
         render json: {"error": "Not found"}, status: :not_found
     end
+    def exam_params
+        params.permit(:title, :start_date, :start_time, :duration, :course_id)
+    end
+    def render_unprocessable_entitiy_response
+        render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
 end
