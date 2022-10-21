@@ -17,6 +17,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_113342) do
   create_table "discussions", force: :cascade do |t|
     t.text "chat_body"
     t.integer "student_id"
+
+
+ActiveRecord::Schema[7.0].define(version: 2022_10_21_161457) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title"
+    t.date "exam_date"
+    t.time "start_time"
+    t.integer "duration"
+    t.integer "course_id"
+ActiveRecord::Schema[7.0].define(version: 2022_10_21_054702) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,5 +51,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_113342) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.string "image_url"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_schools_on_owner_id"
+  end
+
+  add_foreign_key "schools", "owners"
+
 
 end
