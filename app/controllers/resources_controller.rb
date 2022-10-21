@@ -27,6 +27,16 @@ class ResourcesController < ApplicationController
         head :no_content
     end
     
+    private
+
+
+    def find_resource 
+        resource.find(params[:id])
+    end
+
+    def resource_params 
+        params.permit(:description, :educator_id, :student_id)
+    end
 
 
 end
