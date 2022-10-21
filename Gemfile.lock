@@ -163,12 +163,19 @@ PLATFORMS
 DEPENDENCIES
 
   active_model_serializers
+  bcrypt (~> 3.1.7)
+  debug
+  faker (~> 2.18, >= 2.18.0)
+
+
+  active_model_serializers
 
   active_model_serializers (~> 0.10.13)
 
   bcrypt (~> 3.1.7)
   debug
   faker (~> 2.23)
+
   jwt (~> 2.5)
   pg (~> 1.1)
   puma (~> 5.0)
