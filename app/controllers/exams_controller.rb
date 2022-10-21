@@ -18,6 +18,12 @@ class ExamsController < ApplicationController
         render json: exams, status: :created
     end
 
+    def update
+        exams = find_exam
+        exams.update!(exam_params)
+        show
+    end
+
     private
     def find_exam
         Exam.find(params[:id])
