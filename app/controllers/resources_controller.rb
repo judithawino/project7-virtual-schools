@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+    
+    
     def index
         resources = Resources.all
         render json: resources, status: :ok
