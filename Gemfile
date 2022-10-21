@@ -29,4 +29,6 @@ group :development do
 end
 gem 'faker', '~> 2.18', '>= 2.18.0'
 gem 'active_model_serializers'
+gem "jwt", "~> 2.5"
+gem "bcrypt", "~> 3.1.7"
 
