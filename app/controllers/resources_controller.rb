@@ -5,17 +5,28 @@ class ResourcesController < ApplicationController
     end
 
     def show
+        resource= find_resource
+        render json: resource, status: :ok
     end
 
     def create
+        resource = resource.create!(resource_params)
+        render json: resource, status: :created
     end
 
     def update
+        resource = find_resource
+        resource.update!(resource_params)
+        render json: resource, status: :ok
     end
 
 
     def destroy
+        resource = find_resource
+        resource.destroy
+        head :no_content
     end
+    
 
 
 end
