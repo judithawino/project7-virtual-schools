@@ -27,6 +27,13 @@ class QuestionsController < ApplicationController
         show
     end
 
+    # DELETE "/questions/:id"
+    def destroy
+        questions = find_question
+        questions.destroy
+        head :no_content
+    end
+
 
     private
     def find_question
