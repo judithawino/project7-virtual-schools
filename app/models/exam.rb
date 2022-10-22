@@ -5,7 +5,7 @@ class Exam < ApplicationRecord
     }
     validates :title, {
         inclusion: {
-            in: %w(Exam, Quiz, Assessment)
+            in: ['Exam', 'Quiz', 'Assessment']
         }
     }    
 end
