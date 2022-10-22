@@ -8,5 +8,6 @@ puts "Seeding the database....."
       school_id: Faker::IDNumber.valid
     )
   end
+  
 
 puts "Done seeding the database!"
