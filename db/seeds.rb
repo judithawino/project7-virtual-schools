@@ -1,14 +1,26 @@
 
-require 'faker'
+# require 'faker'
 puts "Seeding the database....."
+# 10.times do
+#     Educator.create(
+#       name: Faker::Name.name,
+#       email: Faker::Internet.email,
+#       password: Faker::Internet.password,
+#       school_id: Faker::IDNumber.valid
+#     )
+#   end
+
+50.times do 
+  Answer.create(
+    answer: Faker::Lorem.paragraph,
+    is_plagialised: ["True", "False"].shuffle.first,
+    question_id: Question.all[rand(Owner.count)].id
+  )
+end
+
 10.times do
-    Educator.create(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: Faker::Internet.password,
-      school_id: Faker::IDNumber.valid
-    )
-  end
+  
+end
 
 puts "Done seeding the database!"
 
