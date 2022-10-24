@@ -1,3 +1,3 @@
 class EducatorSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :password, :school_id
+  attributes :id, :name, :email, :school_id
 end

@@ -18,16 +18,7 @@
 #   )
 # end
 
-# 10.times do
 
-#     Educator.create(
-#       name: Faker::Name.name,
-#       email: Faker::Internet.email,
-#       password: Faker::Internet.password,
-#       school_id: Faker::IDNumber.valid
-#     )
-#   end
-  
 
   
 # end
@@ -73,15 +64,26 @@
 
 # puts "Completed seeding data"
 
-20.times do
-    School.create(
-        name: Faker::University.name,
-        image_url: Faker::Avatar.image,
-        owner_id: Owner.all[rand(Owner.count)].id
-    )
-end
+# 20.times do
+#     School.create(
+#         name: Faker::University.name,
+#         image_url: Faker::Avatar.image,
+#         owner_id: Owner.all[rand(Owner.count)].id
+#     )
+# end
+# puts "Successfully seeded database"
 
-puts "Successfully seeded database"
+puts "Seeding data"
+10.times do
+    Educator.create(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      password: Faker::Internet.password,
+      school_id: Faker::IDNumber.valid
+    )
+  end
+puts "Completed seeding data"
+  
 # puts "Seeding data"
 # Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
 # Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
