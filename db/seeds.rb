@@ -1,14 +1,6 @@
 
 # require 'faker'
 # puts "Seeding the database....."
-# 10.times do
-#     Educator.create(
-#       name: Faker::Name.name,
-#       email: Faker::Internet.email,
-#       password: Faker::Internet.password,
-#       school_id: Faker::IDNumber.valid
-#     )
-#   end
 
 # 50.times do 
 #   Answer.create(
@@ -73,9 +65,20 @@
 # end
 # puts "Successfully seeded database"
 
+# puts "Seeding data"
+# 10.times do
+#     Educator.create(
+#       name: Faker::Name.name,
+#       email: Faker::Internet.email,
+#       password: Faker::Internet.password,
+#       school_id: School.all[rand(School.count)].id
+#     )
+#   end
+# puts "Completed seeding data"
+
 puts "Seeding data"
 10.times do
-    Educator.create(
+    Student.create(
       name: Faker::Name.name,
       email: Faker::Internet.email,
       password: Faker::Internet.password,

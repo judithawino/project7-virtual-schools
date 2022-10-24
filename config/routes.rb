@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :schools, only: [:index, :show, :create, :update, :destroy]
   resources :owners, only: [:create, :update, :destroy, :index]
   resources :resources, only: [:index, :show, :create, :update, :destroy]
+  resources :students, only: [:index, :show, :create, :update, :destroy]
   resource :courses
   
 end

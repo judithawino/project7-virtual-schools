@@ -3,9 +3,6 @@ class Educator < ApplicationRecord
     validates :email, uniqueness: true
     validates :password, length: { in: 8..20 }
     belongs_to :school
-    # has_many :students, through: :school
-
-    # belongs_to :school
-
-    # has_many :resources
+    has_many :students, through: :school
+        # has_many :resources
 end
