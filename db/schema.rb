@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2022_10_22_074712) do
+
+
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_102053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.integer "duration"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_074254) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_052632) do
+
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "answer"
+    t.boolean "is_plagirised"
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+
+  end
 
   create_table "discussions", force: :cascade do |t|
     t.text "chat_body"
@@ -30,11 +59,68 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_074712) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "lessons", force: :cascade do |t|
     t.string "topic"
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title"
+    t.date "exam_date"
+    t.time "start_time"
+    t.integer "duration"
+
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "question"
+    t.float "points"
+    t.string "exam_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "title"
+    t.integer "educator_id"
+    t.integer "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.string "image_url"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_schools_on_owner_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.integer "school_id"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+
+  add_foreign_key "answers", "questions"
+
+  add_foreign_key "schools", "owners"
 
 end
