@@ -64,14 +64,34 @@ require 'faker'
 #   end
 # puts "Completed seeding data"
   
-puts "Seeding data"
-Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
-Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
-Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
-Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
-puts "Completed data"
+# puts "Seeding data"
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# puts "Completed data"
 
 # puts "Seeding the database....."
+
+# puts "Seeding data"
+# 10.times do
+#     Lesson.create(
+#       topic: ["Data types", "Data Structures", "Variable types", "Scope", "Context Hooks"].shuffle.first,
+#       course_id: Course.all[rand(Course.count)].id
+#     )
+#   end
+# puts "Completed seeding data"
+
+# puts "Seeding data"
+# 10.times do
+#     Attendance.create(
+#       percentage: [50, 60, 80, 40, 90, 70, 100].shuffle.first,
+#       lesson_id: Lesson.all[rand(Lesson.count)].id,
+#       student_id: Student.all[rand(Student.count)].id
+#     )
+#   end
+# puts "Completed seeding data"
+
 
 # 50.times do 
 #   Answer.create(
@@ -106,6 +126,15 @@ puts "Completed data"
 # Question.create(question: "State and explain three advantages of CSS", points: 3, exam_id:3)
 
 # puts "Completed seeding data"
+
+puts "Seeding data"
+10.times do
+    Discussion.create(
+      chat_body: ["Data types", "Data Structures", "Variable types", "Scope", "Context Hooks"].shuffle.first,
+      student_id: Student.all[rand(Student.count)].id
+    )
+  end
+puts "Completed seeding data"
 
 
 

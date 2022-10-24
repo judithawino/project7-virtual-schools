@@ -1,4 +1,5 @@
 class Exam < ApplicationRecord
+    belongs_to :course
     
     validates :title, :start_time, :duration, :course_id, {
         presence: true
