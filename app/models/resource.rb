@@ -1,8 +1,8 @@
 class Resource < ApplicationRecord
-   has_many :educators
-   has_many :students
+   belongs_to :educator
+   # has_many :students
 
 
-   validates :resource,presence:true
+   validates :title, :url, presence:true
 end
 

@@ -17,6 +17,12 @@ class SchoolsController < ApplicationController
 
     end
 
+    def update
+        school = find_school
+        school.update!(school_params)
+        show
+    end
+
     def destroy
         school = find_school
         school.destroy

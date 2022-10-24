@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
 
        
     def create 
-        course = Course.create!(educator_params)
+        course = Course.create!(course_params)
         render json: course
     end
 

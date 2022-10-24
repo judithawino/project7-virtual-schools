@@ -40,7 +40,7 @@ class ExamsController < ApplicationController
     def exam_params
         params.permit(:title, :start_date, :start_time, :duration, :course_id)
     end
-    def render_unprocessable_entitiy_response
+    def render_unprocessable_entitiy_response(exception)
         render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
 

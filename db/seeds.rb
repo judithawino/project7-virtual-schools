@@ -1,6 +1,6 @@
 
 # require 'faker'
-puts "Seeding the database....."
+# puts "Seeding the database....."
 # 10.times do
 #     Educator.create(
 #       name: Faker::Name.name,
@@ -10,30 +10,30 @@ puts "Seeding the database....."
 #     )
 #   end
 
-50.times do 
-  Answer.create(
-    answer: Faker::Lorem.paragraph,
-    is_plagialised: ["True", "False"].shuffle.first,
-    question_id: Question.all[rand(Owner.count)].id
-  )
-end
+# 50.times do 
+#   Answer.create(
+#     answer: Faker::Lorem.paragraph,
+#     is_plagialised: ["True", "False"].shuffle.first,
+#     question_id: Question.all[rand(Owner.count)].id
+#   )
+# end
 
-10.times do
+# 10.times do
 
-    Educator.create(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: Faker::Internet.password,
-      school_id: Faker::IDNumber.valid
-    )
-  end
+#     Educator.create(
+#       name: Faker::Name.name,
+#       email: Faker::Internet.email,
+#       password: Faker::Internet.password,
+#       school_id: Faker::IDNumber.valid
+#     )
+#   end
   
 
   
-end
+# end
 
 
-puts "Done seeding the database!"
+# puts "Done seeding the database!"
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -51,15 +51,15 @@ puts "Done seeding the database!"
 # # Exam.create(title: "Assessment", exam_date: "3/4/2022", start_time: "12:30 a.m", duration: 60, course_id: 3)
 # puts "completed Seeding data"
 
-puts "Seeding data"
+# puts "Seeding data"
 
-Question.create(question: "What is Ruby?", points: 1, exam_id:3)
-Question.create(question: "Define context in React.", points: 1.5, exam_id:1)
-Question.create(question: "Briefly explain the types of variables in Ruby", points: 6, exam_id:1)
-Question.create(question: "What is DOM manipulation in javascript", points: 1.5, exam_id:2)
-Question.create(question: "State and explain three advantages of CSS", points: 3, exam_id:3)
+# Question.create(question: "What is Ruby?", points: 1, exam_id:3)
+# Question.create(question: "Define context in React.", points: 1.5, exam_id:1)
+# Question.create(question: "Briefly explain the types of variables in Ruby", points: 6, exam_id:1)
+# Question.create(question: "What is DOM manipulation in javascript", points: 1.5, exam_id:2)
+# Question.create(question: "State and explain three advantages of CSS", points: 3, exam_id:3)
 
-puts "Completed seeding data"
+# puts "Completed seeding data"
 
 # puts "Seeding database...."
 
@@ -71,13 +71,22 @@ puts "Completed seeding data"
 #     )
 # end
 
-# 20.times do
-#     School.create(
-#         name: Faker::University.name,
-#         image_url: Faker::Avatar.image,
-#         owner_id: Owner.all[rand(Owner.count)].id
-#     )
-# end
-# puts "Successfully seeded database"
+# puts "Completed seeding data"
+
+20.times do
+    School.create(
+        name: Faker::University.name,
+        image_url: Faker::Avatar.image,
+        owner_id: Owner.all[rand(Owner.count)].id
+    )
+end
+
+puts "Successfully seeded database"
+# puts "Seeding data"
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# Resource.create(title: "Introduction to python Enum", url: "https://www.python.org/", educator_id: 3)
+# puts "Completed data"
+
 
 

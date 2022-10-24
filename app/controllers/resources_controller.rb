@@ -1,8 +1,9 @@
 class ResourcesController < ApplicationController
-    
+rescue_from ActiveRecord::RecordNotFound, with: :render_resource_not_found_response
+rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     
     def index
-        resources = Resources.all
+        resources = Resource.all
         render json: resources, status: :ok
     end
 
@@ -19,7 +20,7 @@ class ResourcesController < ApplicationController
     def update
         resource = find_resource
         resource.update!(resource_params)
-        render json: resource, status: :ok
+        show
     end
 
 
@@ -37,8 +38,16 @@ class ResourcesController < ApplicationController
     end
 
     def resource_params 
-        params.permit(:description, :educator_id, :student_id)
+        params.permit(:title, :url, :educator_id)
     end
 
-
+    # displaying an error message for an nonexistent resource
+    def resource_not_found_response
+        render json: {error: "Resource not found"}, status: :not_found
+    end
+    
+    # displaying error for an invalid input
+    def render_unprocessable_entity_response(invalid)
+        render json: {errors: invalid.record.errors.full_message}, status: :unprocessable_entity
+    end
 end
