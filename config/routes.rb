@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :lessons
+
   resources :answers only: [:show, :create, :update, :destroy]
 
   resources :questions, only: [:index, :show, :create, :update, :destroy]
+
 
 
   resources :discussions

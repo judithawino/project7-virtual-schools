@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_074712) do
+
+
 ActiveRecord::Schema[7.0].define(version: 2022_10_22_102053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_102053) do
 ActiveRecord::Schema[7.0].define(version: 2022_10_22_074254) do
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_22_052632) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,15 +59,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_052632) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "topic"
+
   create_table "exams", force: :cascade do |t|
     t.string "title"
     t.date "exam_date"
     t.time "start_time"
     t.integer "duration"
+
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
@@ -112,4 +122,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_052632) do
   add_foreign_key "answers", "questions"
 
   add_foreign_key "schools", "owners"
+
 end
