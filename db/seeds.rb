@@ -79,7 +79,7 @@ puts "Seeding data"
       name: Faker::Name.name,
       email: Faker::Internet.email,
       password: Faker::Internet.password,
-      school_id: Faker::IDNumber.valid
+      school_id: School.all[rand(School.count)].id
     )
   end
 puts "Completed seeding data"

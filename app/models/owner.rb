@@ -1,5 +1,6 @@
 class Owner < ApplicationRecord
     has_one :school
+    has_many :educators, through: :school
     has_secure_password
 
     PASSWORD_FORMAT = /\A
