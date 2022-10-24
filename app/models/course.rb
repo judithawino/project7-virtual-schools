@@ -1,5 +1,7 @@
 class Course < ApplicationRecord
     has_many :lessons
     has_many :exams
-    belongs_to :school
+    has_many :students
+    has_many :schools, through: :students
+    
 end
