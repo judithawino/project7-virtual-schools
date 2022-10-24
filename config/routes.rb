@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :schools, only: [:index]
   resources :owners, only: [:create, :update, :destroy, :index]
+  resource :courses
   
-
 end
