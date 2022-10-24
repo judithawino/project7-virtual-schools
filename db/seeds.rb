@@ -93,13 +93,13 @@ require 'faker'
 # puts "Completed seeding data"
 
 
-# 50.times do 
-#   Answer.create(
-#     answer: Faker::Lorem.paragraph,
-#     is_plagialised: ["True", "False"].shuffle.first,
-#     question_id: Question.all[rand(Owner.count)].id
-#   )
-# end
+50.times do 
+  Answer.create(
+    answer: Faker::Lorem.paragraph,
+    is_plagiarised: ["True", "False"].shuffle.first,
+    question_id: Question.all[rand(Question.count)].id
+  )
+end
 
 
 
@@ -127,14 +127,14 @@ require 'faker'
 
 # puts "Completed seeding data"
 
-puts "Seeding data"
-10.times do
-    Discussion.create(
-      chat_body: ["Data types", "Data Structures", "Variable types", "Scope", "Context Hooks"].shuffle.first,
-      student_id: Student.all[rand(Student.count)].id
-    )
-  end
-puts "Completed seeding data"
+# puts "Seeding data"
+# 10.times do
+#     Discussion.create(
+#       chat_body: ["Data types", "Data Structures", "Variable types", "Scope", "Context Hooks"].shuffle.first,
+#       student_id: Student.all[rand(Student.count)].id
+#     )
+#   end
+# puts "Completed seeding data"
 
 
 
