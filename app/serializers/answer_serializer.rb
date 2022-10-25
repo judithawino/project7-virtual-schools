@@ -1,3 +1,3 @@
 class AnswerSerializer < ActiveModel::Serializer
-  attributes :id, :answer, :is_plagialised
+  attributes :id, :answer, :is_plagiarised
 end

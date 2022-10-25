@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+
+  post '/login', to: 'authentication#login_educator'
+  # delete '/logout', to: 'sessions#logout'
   resources :attendances, only: [:index, :show, :create, :update, :destroy]
 
   resources :lessons
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
 
 
   resources :discussions
-  resources :educators
+  resources :educators, only: [:index, :show, :create, :update, :destroy]
 
 
   resources :exams, only: [:index, :show, :create, :update, :destroy]

@@ -13,7 +13,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
 
     def create
-        resource = resource.create!(resource_params)
+        # educator = Educator.find(session[:educator_id])
+        resource = Resource.create!(resource_params)
         render json: resource, status: :created
     end
 
