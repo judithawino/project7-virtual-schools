@@ -1,6 +1,7 @@
 class OwnersController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-rescue_from ActiveRecord::RecordNotFound, with: :render_owner_not_found_response
+    skip_before_action :authorize, only: [:create]
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    rescue_from ActiveRecord::RecordNotFound, with: :render_owner_not_found_response
 
 
     def update
@@ -11,7 +12,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_owner_not_found_response
 
     def create
         owner = Owner.create!(owner_params)
-        render json: owner, status: :created
+        token = encode_token(owner_id: owner.id)
+        render json: { owner: OwnerSerializer.new(owner), jwt: token }, status: :created        
     end
 
     def index

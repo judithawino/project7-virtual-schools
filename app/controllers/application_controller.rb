@@ -21,8 +21,16 @@ class ApplicationController < ActionController::API
   
     def current_user
       if decoded_token
-        educator_id = decoded_token[0]['educator_id']
+        educator_id = decoded_token[0]['educator_id']        
         educator = Educator.find_by(id: educator_id)
+
+        # # owner authentication
+        # owner_id = decoded_token[0]['owner_id']
+        # owner = Owner.find_by(id: owner_id)
+
+        # # student authentication
+        # student_id = decoded_token[0]['student_id']
+        # student = Student.find_by(id: student_id)
       end
     end
   

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
 
-  post '/login', to: 'auth#login'
+  post '/educator/login', to: 'auth#educator_login'
+  post '/login', to: 'auth#owner_login'
   # delete '/logout', to: 'sessions#logout'
   resources :attendances, only: [:index, :show, :create, :update, :destroy]
 
