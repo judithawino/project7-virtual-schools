@@ -90,20 +90,7 @@ puts "Seeding data"
       student_id: Student.all[rand(Student.count)].id
     )
   end
-puts "Completed seeding data"
-
-
-50.times do 
-  Answer.create(
-    answer: Faker::Lorem.paragraph,
-    is_plagiarised: ["True", "False"].shuffle.first,
-    question_id: Question.all[rand(Question.count)].id
-  )
-end
-
-
-
-  
+puts "Completed seeding data"  
 # end
 
 
@@ -126,6 +113,15 @@ Question.create(question: "What is DOM manipulation in javascript", points: 1.5,
 Question.create(question: "State and explain three advantages of CSS", points: 3, exam_id:3)
 
 puts "Completed seeding data"
+
+50.times do 
+  Answer.create(
+    answer: Faker::Lorem.paragraph,
+    is_plagiarised: ["True", "False"].shuffle.first,
+    question_id: Question.all[rand(Question.count)].id
+  )
+end
+
 
 puts "Seeding data"
 10.times do
