@@ -5,7 +5,8 @@ class SchoolsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-        render json: School.all, status: :ok
+        schools = School.all
+        render json: schools, status: :ok
     end
 
     def show
