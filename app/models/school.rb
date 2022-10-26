@@ -5,5 +5,5 @@ class School < ApplicationRecord
     has_many :courses, through: :students
     has_many :resources, through: :educators
 
-    validates :name, :owner_id, :image_url, presence: true
+    # validates :name, :owner_id, :image_url, presence: true
 end
