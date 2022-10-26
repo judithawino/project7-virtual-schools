@@ -1,4 +1,6 @@
 class SchoolsController < ApplicationController
+    skip_before_action, only: [:index, :show]
+
     rescue_from ActiveRecord::RecordNotFound, with: :render_school_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
