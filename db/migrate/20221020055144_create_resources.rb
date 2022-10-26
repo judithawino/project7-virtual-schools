@@ -3,7 +3,7 @@ class CreateResources < ActiveRecord::Migration[7.0]
     create_table :resources do |t|
       t.string :title
       t.integer :educator_id
-      t.integer :url
+      t.string :url
 
       t.timestamps
     end
