@@ -23,13 +23,17 @@ module Project7VirtualSchools
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # configure jwt autoload paths
+    # config.autoload_paths << Rails.root.join('concern')
+    # config.autoload_paths << '#{Rails.root}/lib'
+
 
     # This also configures session_options for use below
-   config.session_store :cookie_store, key: '_interslice_session',
-   :same_site => :none, :secure => :true
+  #  config.session_store :cookie_store, key: '_interslice_session',
+  #  :same_site => :none, :secure => :true
    
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
+  #   config.middleware.use ActionDispatch::Cookies
+  #   config.middleware.use ActionDispatch::Session::CookieStore
     # config.middleware.use ActionDispatch::Flash
     # config.middleware.use config.session_store, config.session_options
 

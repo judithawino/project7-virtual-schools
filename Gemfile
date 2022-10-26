@@ -24,8 +24,13 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Use serializer
 gem 'active_model_serializers'
 
+# gem 'intuit-oauth', '~> 1.0', '>= 1.0.2'
+
 # Use jwt authentication
-gem "jwt", "~> 2.5"
+gem 'jwt'
+
+# Use simple_command instead of private controller methods 
+# gem 'simple_command'
 
 # Use bcrypt for secure password
 gem 'bcrypt', '~> 3.1.7'

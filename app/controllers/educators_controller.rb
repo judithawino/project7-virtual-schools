@@ -1,5 +1,6 @@
 class EducatorsController < ApplicationController
-   
+    skip_before_action :authorize, only: [:create]
+    
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
    
@@ -15,7 +16,8 @@ class EducatorsController < ApplicationController
     
     def create 
         educator = Educator.create!(educator_params)
-        render json: educator
+        token = encode_token(educator_id: educator.id)
+        render json: { educator: EducatorSerializer.new(educator), jwt: token }, status: :created
     end
     
     def update
