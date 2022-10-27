@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
-rescue_from ActiveRecord::RecordNotFound, with: :render_resource_not_found_response
+rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found_response
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+require 'jwt'
     
     def index
         resources = Resource.all
@@ -10,24 +11,30 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     def show
         resource= find_resource
         render json: resource, status: :ok
-    end
+    end   
 
-    def create
-        # educator = Educator.find(session[:educator_id])
-        resource = Resource.create!(resource_params)
+    def create 
+        educator = Educator.find(decoded_token[0]["educator_id"])        
+        resource = educator.resources.create!(resource_params)        
         render json: resource, status: :created
     end
 
     def update
+        educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
-        resource.update!(resource_params)
+        educator.resources.update!(resource_params)
         show
     end
 
 
     def destroy
+        educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
-        resource.destroy
+        array = educator.resources.destroy
+        # filter do |item|
+        #     item == resource
+        # end
+        # array
         head :no_content
     end
     
@@ -35,7 +42,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 
 
     def find_resource 
-        resource.find(params[:id])
+        Resource.find(params[:id])
     end
 
     def resource_params 

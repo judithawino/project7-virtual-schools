@@ -1,6 +1,5 @@
 class Resource < ApplicationRecord
-   belongs_to :educator
-   
+   belongs_to :educator  
    # has_many :students
 
 
