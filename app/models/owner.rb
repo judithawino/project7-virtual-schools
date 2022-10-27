@@ -20,5 +20,18 @@ class Owner < ApplicationRecord
 #   format: { with: PASSWORD_FORMAT }, 
 #   confirmation: true, 
 #   on: :create 
+validate :emailbait?
 
+  EMAIL_PATTERNS = [
+    /@admin.com/i
+    # /Secret/i,
+    # /Top \d/i,
+    # /gmailGuess/i
+  ]
+
+  def emailbait?
+    if EMAIL_PATTERNS.none? { |pat| pat.match email }
+      errors.add(:email, "write the correct email address")
+    end
+  end
 end

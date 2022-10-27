@@ -1,6 +1,5 @@
 class SchoolsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show]
-
     rescue_from ActiveRecord::RecordNotFound, with: :render_school_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
@@ -14,22 +13,30 @@ class SchoolsController < ApplicationController
         render json: school, status: :ok
     end
 
-    def create
-        school = School.create!(school_params)
+    def create 
+        owner = Owner.find(decoded_token[0]["owner_id"])        
+        school = owner.create_school(school_params)        
         render json: school, status: :created
-
     end
 
+    # def create
+    #     owner = Owner.find(decoded_token[0]["owner_id"])        
+    #     school = owner.school.create!(school_params)
+    #     render json: school, status: :created
+    # end
+
     def update
+        owner = Owner.find(decoded_token[0]["owner_id"])
         school = find_school
-        school.update!(school_params)
+        owner.school.update!(school_params)
         show
     end
 
     def destroy
+        owner = Owner.find(decoded_token[0]["owner_id"])
         school = find_school
-        school.destroy
-        render json: {}
+        owner.schools.destroy
+        head :no_content
     end
 
 

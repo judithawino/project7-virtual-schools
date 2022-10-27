@@ -14,8 +14,9 @@ class EducatorsController < ApplicationController
         render json: educator
     end
     
-    def create 
-        educator = Educator.create!(educator_params)
+    def create
+        owner = Owner.find(decoded_token[0]["owner_id"])        
+        educator = owner.educators.create!(educator_params)        
         token = encode_token(educator_id: educator.id)
         render json: { educator: EducatorSerializer.new(educator), jwt: token }, status: :created
     end

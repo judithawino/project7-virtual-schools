@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   post '/educator/login', to: 'auth#educator_login'
-  post '/login', to: 'auth#owner_login'
+  post '/owner/login', to: 'auth#owner_login'
   # delete '/logout', to: 'sessions#logout'
   resources :attendances, only: [:index, :show, :create, :update, :destroy]
 

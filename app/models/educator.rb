@@ -6,4 +6,18 @@ class Educator < ApplicationRecord
     has_many :students, through: :school
     has_many :resources, dependent: :destroy
     has_secure_password
+    validate :emailbait?
+
+  EMAIL_PATTERNS = [
+    /@educator.com/i
+    # /Secret/i,
+    # /Top \d/i,
+    # /gmailGuess/i
+  ]
+
+  def emailbait?
+    if EMAIL_PATTERNS.none? { |pat| pat.match email }
+      errors.add(:email, "write the correct email address")
+    end
+  end
 end
