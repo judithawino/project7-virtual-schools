@@ -37,7 +37,7 @@ def find_Student
 end
 
 def student_params
-    params.permit(:name, :email, :password, :school_id)
+    params.permit(:name, :email, :password, :school_id, :owner_id)
 end
 
 def render_student_not_found_response

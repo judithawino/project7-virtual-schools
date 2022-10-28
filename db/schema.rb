@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.text "answer"
     t.boolean "is_plagiarised"
     t.bigint "question_id", null: false
+    t.string "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -27,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.float "percentage"
     t.integer "lesson_id"
     t.integer "student_id"
+    t.integer "educator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.integer "duration"
+    t.integer "school_id"
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.string "email"
     t.string "password_digest"
     t.integer "school_id"
+    t.string "phone_contact"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "topic"
+    t.integer "educator_id"
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "phone_contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.string "question"
     t.float "points"
     t.string "exam_id"
+    t.string "educator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,7 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
   create_table "resources", force: :cascade do |t|
     t.string "title"
     t.integer "educator_id"
-    t.string "url"
+    t.string "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,8 +117,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_143249) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "phone_contact"
     t.integer "school_id"
     t.integer "course_id"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

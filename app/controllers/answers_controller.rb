@@ -28,7 +28,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
 
     def answer_params
-        params.permit(:answer, :question_id )
+        params.permit(:answer, :question_id, :student_id)
     end
 
     def render_unprocessable_entity_response(invalid)

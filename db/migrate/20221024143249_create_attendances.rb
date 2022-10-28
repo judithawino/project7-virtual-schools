@@ -4,6 +4,7 @@ class CreateAttendances < ActiveRecord::Migration[7.0]
       t.float :percentage
       t.integer :lesson_id
       t.integer :student_id
+      t.integer :educator_id
 
       t.timestamps
     end

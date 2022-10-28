@@ -38,7 +38,7 @@ class EducatorsController < ApplicationController
         Educator.find(params[:id])
     end
     def educator_params
-        params.permit(:name, :email, :password, :school_id)
+        params.permit(:name, :email, :password, :school_id, :phone_contact, :owner_id)
     end
     
     def render_not_found_response

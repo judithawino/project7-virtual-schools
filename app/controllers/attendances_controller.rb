@@ -34,7 +34,7 @@ class AttendancesController < ApplicationController
         Attendance.find(params[:id])
     end
     def attendance_params
-        params.permit(:percentage, :lesson_id, :student_id)
+        params.permit(:percentage, :lesson_id, :student_id, :educator_id)
     end
     
     def render_not_found_response

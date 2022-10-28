@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-        params.permit(:title, :duration, :image_url)
+        params.permit(:title, :duration, :image_url, :school_id)
     end
 
     def render_not_found_response

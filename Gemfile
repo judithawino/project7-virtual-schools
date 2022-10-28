@@ -29,6 +29,9 @@ gem 'active_model_serializers'
 # Use jwt authentication
 gem 'jwt'
 
+# upload files
+gem 'carrierwave'
+
 # Use simple_command instead of private controller methods 
 # gem 'simple_command'
 

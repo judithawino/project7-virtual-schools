@@ -19,7 +19,7 @@ class OwnersController < ApplicationController
     def index
         render json: Owner.all, status: :ok
     end
-
+    
     def destroy
         owner = find_owner
         owner.destroy

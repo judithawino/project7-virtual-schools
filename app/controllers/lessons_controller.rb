@@ -34,7 +34,7 @@ class LessonsController < ApplicationController
         Lesson.find(params[:id])
     end
     def lesson_params
-        params.permit(:topic, :course_id)
+        params.permit(:topic, :course_id, :educator_id)
     end
     
     def render_not_found_response

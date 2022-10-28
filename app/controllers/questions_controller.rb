@@ -39,12 +39,15 @@ class QuestionsController < ApplicationController
     def find_question
         Question.find(params[:id])
     end
+
     def question_not_found
         render json: {"error": "Not found"}, status: :not_found
     end
+
     def question_params
-        params.permit(:question, :points, :exam_id)
+        params.permit(:question, :points, :exam_id, :educator_id)
     end
+    
     def render_unprocessable_entitiy_response
         render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end

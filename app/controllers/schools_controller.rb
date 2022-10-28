@@ -19,12 +19,6 @@ class SchoolsController < ApplicationController
         render json: school, status: :created
     end
 
-    # def create
-    #     owner = Owner.find(decoded_token[0]["owner_id"])        
-    #     school = owner.school.create!(school_params)
-    #     render json: school, status: :created
-    # end
-
     def update
         owner = Owner.find(decoded_token[0]["owner_id"])
         school = find_school

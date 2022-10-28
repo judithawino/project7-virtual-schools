@@ -1,26 +1,28 @@
 class Owner < ApplicationRecord
     has_one :school
-    has_many :educators, through: :school
-    has_many :students, through: :school
+    has_many :educators
+    has_many :students
     has_secure_password
 
-#     PASSWORD_FORMAT = /\A
-#   (?=.{8,}) 
-#   (?=.*\d) 
-#   (?=.*[a-z])   
-#   (?=.*[A-Z])
-#   (?=.*[[:^alnum:]])
-# /x
+    PASSWORD_FORMAT = /\A
+  (?=.{8,}) 
+  (?=.*\d) 
+  (?=.*[a-z])   
+  (?=.*[A-Z])
+  (?=.*[[:^alnum:]])
+/x
 
-#   validates :name, presence: true, uniqueness: true, length: {minimum: 8}
-#   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
-#   validates :password, 
-#   presence: true, 
-#   length: { minimum: 8}, 
-#   format: { with: PASSWORD_FORMAT }, 
-#   confirmation: true, 
-#   on: :create 
-validate :emailbait?
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  # validates :phone_contact, presence: true, uniqueness: true, length:{is: 13}
+  validates :password, 
+  presence: true, 
+  length: { minimum: 8}, 
+  format: { with: PASSWORD_FORMAT }, 
+  confirmation: true, 
+  on: :create 
+  validate :emailbait?
+  # validate :contactbait?
 
   EMAIL_PATTERNS = [
     /@admin.com/i
@@ -34,4 +36,17 @@ validate :emailbait?
       errors.add(:email, "write the correct email address")
     end
   end
+
+  # CONTACT_PATTERNS = [    
+  #   # (?:\+?|\b)[0-9]{13}\b 
+  #   /+254/i,
+  #   /[0-9]/i   
+  # ] 
+
+  def contactbait?
+    if CONTACT_PATTERNS.none? { |pat| pat.match phone_contact }
+      errors.add(:phone_contact, "Enter a valid phone number")
+    end
+  end
+
 end
