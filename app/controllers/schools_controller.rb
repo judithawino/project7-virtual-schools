@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show]
+
     rescue_from ActiveRecord::RecordNotFound, with: :render_school_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
@@ -29,7 +30,7 @@ class SchoolsController < ApplicationController
     def destroy
         owner = Owner.find(decoded_token[0]["owner_id"])
         school = find_school
-        owner.schools.destroy
+        owner.school.destroy
         head :no_content
     end
 

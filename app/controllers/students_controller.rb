@@ -13,12 +13,15 @@ def show
 end
 
 def create 
-    student = student.create!(student_params)
-    render json: student, status: :created
+    owner = Owner.find(decoded_token[0]["owner_id"])
+    student = owner.students.create!(student_params)
+    token = encode_token(student_id: student.id)
+    render json: { student: StudentSerializer.new(student), jwt: token }, status: :created
 end
 
 def update
-    student = find_Student
+    student = Student.find(decoded_token[0]["student_id"])
+    # student = find_Student
     student.update!(student_params)
     show
 end
@@ -37,7 +40,7 @@ def find_Student
 end
 
 def student_params
-    params.permit(:name, :email, :password, :school_id, :owner_id)
+    params.permit(:name, :email, :password, :school_id, :course_id, :owner_id)
 end
 
 def render_student_not_found_response
