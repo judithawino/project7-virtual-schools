@@ -30,7 +30,7 @@ class SchoolsController < ApplicationController
     def destroy
         owner = Owner.find(decoded_token[0]["owner_id"])
         school = find_school
-        owner.school.destroy
+        school.destroy
         head :no_content
     end
 

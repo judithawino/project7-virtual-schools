@@ -12,15 +12,17 @@ class LessonsController < ApplicationController
         render json: lesson
     end
     
-    def create 
-        lesson = Lesson.create!(lesson_params)
-        render json: lesson
+    def create
+        educator = Educator.find(decoded_token[0]["educator_id"]) 
+        lesson = educator.lessons.create!(lesson_params)
+        render json: lesson, status: :created
     end
-    
+      
     def update
+        educator = Educator.find(decoded_token[0]["educator_id"])
         lesson = find_lesson
-        lesson.update!(lesson_params)
-        render json: lesson
+        educator.lessons.update!(lesson_params)
+        render json: lesson, status: :ok
     end
     
     def destroy
