@@ -5,7 +5,9 @@ class EducatorsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
    
     def index 
-        educators = Educator.all 
+        educators = Educator.all
+                    .paginate(:page => params[:page], :per_page => 5)
+                    .order('created_at ASC') 
         render json: educators
     end
     

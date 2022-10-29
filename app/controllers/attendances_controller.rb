@@ -3,7 +3,9 @@ class AttendancesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
    
     def index 
-        attendance = Attendance.all 
+        attendance = Attendance.all
+                    .paginate(:page => params[:page], :per_page => 5)
+                    .order('created_at ASC') 
         render json: attendance
     end
     

@@ -7,6 +7,8 @@ class CoursesController < ApplicationController
 
     def index
         courses = Course.all
+                    .paginate(:page => params[:page], :per_page => 5)
+                    .order('created_at ASC')
         render json: courses
     end
 
