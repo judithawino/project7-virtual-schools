@@ -13,17 +13,20 @@ class DiscussionsController < ApplicationController
     end
    
     def create 
-        discussion = Discussion.create!(discussion_params)
-        render json: discussion
+        student = Student.find(decoded_token[0]["student_id"])
+        discussion = student.discussions.create!(discussion_params)
+        render json: discussion, status: :created
     end
    
     def update
+        student = Student.find(decoded_token[0]["student_id"])
         discussion = find_discussion
-        discussion.update!(discussion_params)
-        render json: discussion
+        student.discussions.update!(discussion_params)
+        render json: discussion, status: :created
     end
     
     def destroy
+        student = Student.find(decoded_token[0]["student_id"])
         discussion = find_discussion
         discussion.destroy
         head :no_content
