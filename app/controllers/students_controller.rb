@@ -3,7 +3,9 @@ class StudentsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   def index 
-    student = Student.all 
+    student = Student.all
+            .paginate(:page => params[:page], :per_page => 10)
+            .order('created_at ASC') 
     render json: student, status: :ok
 end
 
