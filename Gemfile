@@ -32,6 +32,9 @@ gem 'jwt'
 # upload files
 gem 'carrierwave'
 
+# add pagination to models
+gem 'will_paginate'
+
 # Use simple_command instead of private controller methods 
 # gem 'simple_command'
 

@@ -1,10 +1,13 @@
 class QuestionsController < ApplicationController
+    # skip_before_action :authorize, only: [:index]
     rescue_from ActiveRecord::RecordNotFound, with: :question_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 
     # GET "/questions"
     def index
         questions = Question.all
+                    .paginate(:page => params[:page], :per_page => 5)
+                    .order('created_at ASC')
         render json: questions, status: :ok
     end
 
@@ -35,8 +38,7 @@ class QuestionsController < ApplicationController
         questions.destroy
         head :no_content
     end
-
-
+ 
     private
     def find_question
         Question.find(params[:id])
