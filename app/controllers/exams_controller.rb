@@ -14,13 +14,15 @@ class ExamsController < ApplicationController
     end
 
     def create
-        exams = Exam.create!(exam_params)
-        render json: exams, status: :created
+        owner = Owner.find(decoded_token[0]["owner_id"])
+        exam = owner.exams.create!(exam_params)
+        render json: exam, status: :created
     end
 
     def update
-        exams = find_exam
-        exams.update!(exam_params)
+        owner = Owner.find(decoded_token[0]["owner_id"])
+        exam = find_exam
+        owner.exams.update!(exam_params)
         show
     end
 

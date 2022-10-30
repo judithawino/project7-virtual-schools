@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+    skip_before_action :authorize, only: [:index, :show]
 rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found_response
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 require 'jwt'
@@ -16,39 +17,43 @@ require 'jwt'
     def create 
         educator = Educator.find(decoded_token[0]["educator_id"])        
         resource = educator.resources.create!(resource_params) 
-        respond_to do |format|
-            if resource.save
-            #   format.html { redirect_to resource, notice: 'Resource was successfully created.' }
-              format.json { render :resource, status: :created, location: resource }
-            else
-            #   format.html { render :new }
-              format.json { render json: resource.errors, status: :unprocessable_entity }
-            end
-          end
-        end           
+        render json: resource, status: :created
+        # respond_to do |format|
+        #     if resource.save
+        #     #   format.html { redirect_to resource, notice: 'Resource was successfully created.' }
+        #       format.json { render :resource, status: :created, location: resource }
+        #     else
+        #     #   format.html { render :new }
+        #       format.json { render json: resource.errors, status: :unprocessable_entity }
+        #     end
+        #   end
+        # end           
     end
 
     def update
-        respond_to do |format|
+        # respond_to do |format|
         educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
-        if educator.resources.update!(resource_params)
-            # format.html { redirect_to resource, notice: 'Recipe was successfully updated.' }
-            format.json { render :show, status: :ok, location: resource }
-        else
-            # format.html { render :edit }
-            format.json { render json: @recipe.errors, status: :unprocessable_entity }
-        end         
+        educator.resources.update!(resource_params)
+        show
+        # if 
+        #     # format.html { redirect_to resource, notice: 'Recipe was successfully updated.' }
+        #     format.json { render :show, status: :ok, location: resource }
+        # else
+        #     # format.html { render :edit }
+        #     format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        # end         
     end
 
     def destroy
         educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
         educator.resources.destroy
-        respond_to do |format|
-            # format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-            format.json { head :no_content }        
-        end
+        head :no_content
+        # respond_to do |format|
+        #     # format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
+        #     format.json { head :no_content }        
+        # end
     end
     
     private

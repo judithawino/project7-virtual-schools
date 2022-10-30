@@ -1,5 +1,6 @@
 class Exam < ApplicationRecord
     belongs_to :course
+    belongs_to :owner
     has_many :questions, dependent: :destroy
     has_many :answers, through: :questions
     

@@ -1,7 +1,9 @@
 class Owner < ApplicationRecord
     has_one :school
-    has_many :educators
-    has_many :students
+    has_many :educators, dependent: :destroy
+    has_many :students, dependent: :destroy
+    has_many :courses, dependent: :destroy
+    has_many :exams, dependent: :destroy
     has_secure_password
 
     PASSWORD_FORMAT = /\A
