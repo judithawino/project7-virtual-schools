@@ -35,6 +35,9 @@ gem 'carrierwave'
 # add pagination to models
 gem 'will_paginate'
 
+# upload images to cloudinary
+gem 'cloudinary'
+
 # Use simple_command instead of private controller methods 
 # gem 'simple_command'
 
