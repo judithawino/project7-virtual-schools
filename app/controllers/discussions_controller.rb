@@ -4,12 +4,12 @@ class DiscussionsController < ApplicationController
    
     def index 
         discussions = Discussion.all 
-        render json: discussions
+        render json: discussions       
     end
     
     def show
         discussion = find_discussion
-        render json: discussion 
+        render json: discussion, status: :ok 
     end
    
     def create 
