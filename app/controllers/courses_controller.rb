@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-        params.permit(:title, :duration, :image_url, :school_id)
+        params.permit(:title, :duration, :image_url, :school_id, :owner_id)
     end
 
     def render_not_found_response
