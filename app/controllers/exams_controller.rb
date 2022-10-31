@@ -47,7 +47,7 @@ class ExamsController < ApplicationController
         render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
 
-     //add a timer in ruby?
+    #  //add a timer in ruby?
 
 require 'timeout'
 
