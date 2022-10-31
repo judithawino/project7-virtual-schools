@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize
 
     rescue_from ActiveRecord::RecordNotFound, with: :render_school_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
@@ -51,4 +51,11 @@ class SchoolsController < ApplicationController
     def render_unprocessable_entity_response(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
+    # //add plagiarism checker in ruby?
+    # //check plagiarism in ruby?
+    
+
+
+
+
 end

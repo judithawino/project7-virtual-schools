@@ -11,5 +11,17 @@ class Exam < ApplicationRecord
         inclusion: {
             in: ['Exam', 'Quiz', 'Assessment']
         }
-    }    
+    }
+     
+    # def ask_question(duration)
+    #     puts "\n=== NEW QUESTION ==="
+    #     # puts question
+    #     Timeout::timeout(duration) do
+    #       user_action = gets.chomp
+    #       return user_action === answer
+    #     end
+    #   rescue Timeout::Error
+    #     puts "🚧 time is up! solution: #{answer}"
+    #     return false
+    # end   
 end

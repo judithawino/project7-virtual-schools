@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+    skip_before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
    
@@ -13,15 +14,15 @@ class LessonsController < ApplicationController
     end
     
     def create
-        educator = Educator.find(decoded_token[0]["educator_id"]) 
-        lesson = educator.lessons.create!(lesson_params)
+        # educator = Educator.find(decoded_token[0]["educator_id"]) 
+        lesson = Lesson.create!(lesson_params)
         render json: lesson, status: :created
     end
       
     def update
-        educator = Educator.find(decoded_token[0]["educator_id"])
+        # educator = Educator.find(decoded_token[0]["educator_id"])
         lesson = find_lesson
-        educator.lessons.update!(lesson_params)
+        lesson.update!(lesson_params)
         render json: lesson, status: :ok
     end
     

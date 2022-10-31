@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+  skip_before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :exam_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 
@@ -45,5 +46,46 @@ class ExamsController < ApplicationController
     def render_unprocessable_entitiy_response(exception)
         render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
+
+     //add a timer in ruby?
+
+require 'timeout'
+
+questions = [
+  "2 + 2 = ?",
+  "Who is Amazons CEO?",
+]
+answers = [
+  "4",
+  "Jeff Bezos",
+]
+
+def ask_question(question, answer, time_to_answer)
+  puts "\n=== NEW QUESTION ==="
+  puts question
+  Timeout::timeout(time_to_answer) do
+    user_action = gets.chomp
+    return user_action === answer
+  end
+rescue Timeout::Error
+  puts "🚧 time is up! solution: #{answer}"
+  return false
+end
+
+time_to_answer = 5 # in seconds
+score = 0 # initialize score
+questions.each_with_index do |question, indx|
+  correct = ask_question(question, answers[indx], time_to_answer)
+  score += 1 if correct
+  puts correct ? "✅ correct" : "❌ wrong! correct solution: #{answers[indx]}"
+end
+
+puts "\n🎉 Your score is #{score} out of #{questions.size}"
+
+
+
+
+
+
 
 end

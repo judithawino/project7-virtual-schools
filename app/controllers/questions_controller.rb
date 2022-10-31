@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    # skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :question_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 
