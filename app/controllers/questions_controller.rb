@@ -19,16 +19,17 @@ class QuestionsController < ApplicationController
 
     # POST "/questions"
     def create
-        educator = Educator.find(decoded_token[0]["educator_id"])
-        questions = educator.questions.create!(question_params)
+        # educator = Educator.find(decoded_token[0]["educator_id"])
+        # questions = educator.questions.create!(question_params)
+        questions = Question.create!(question_params)
         render json: questions, status: :created
     end
 
     # PATCH "/questions/:id"
     def update
-        educator = Educator.find(decoded_token[0]["educator_id"])
+        # educator = Educator.find(decoded_token[0]["educator_id"])
         questions = find_question
-        educator.questions.update!(question_params)
+        questions.update!(question_params)
         show
     end
 
