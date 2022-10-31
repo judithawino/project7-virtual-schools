@@ -16,15 +16,16 @@ def show
 end
 
 def create 
-    owner = Owner.find(decoded_token[0]["owner_id"])
-    student = owner.students.create!(student_params)
-    token = encode_token(student_id: student.id)
-    render json: { student: StudentSerializer.new(student), jwt: token }, status: :created
+    # owner = Owner.find(decoded_token[0]["owner_id"])
+    student = Student.create!(student_params)
+    # token = encode_token(student_id: student.id)
+    # render json: { student: StudentSerializer.new(student), jwt: token }, status: :created
+    render json: student, status: :created
 end
 
 def update
-    student = Student.find(decoded_token[0]["student_id"])
-    # student = find_Student
+    # student = Student.find(decoded_token[0]["student_id"])
+    student = find_Student
     student.update!(student_params)
     show
 end

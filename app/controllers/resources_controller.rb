@@ -15,8 +15,8 @@ require 'jwt'
     end    
 
     def create 
-        educator = Educator.find(decoded_token[0]["educator_id"])        
-        resource = educator.resources.create!(resource_params) 
+        # educator = Educator.find(decoded_token[0]["educator_id"])        
+        resource = Resource.create!(resource_params) 
         render json: resource, status: :created
         # respond_to do |format|
         #     if resource.save
@@ -32,9 +32,9 @@ require 'jwt'
 
     def update
         # respond_to do |format|
-        educator = Educator.find(decoded_token[0]["educator_id"])
+        # educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
-        educator.resources.update!(resource_params)
+        resource.update!(resource_params)
         show
         # if 
         #     # format.html { redirect_to resource, notice: 'Recipe was successfully updated.' }
@@ -46,9 +46,9 @@ require 'jwt'
     end
 
     def destroy
-        educator = Educator.find(decoded_token[0]["educator_id"])
+        # educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
-        educator.resources.destroy
+        resource.destroy
         head :no_content
         # respond_to do |format|
         #     # format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
