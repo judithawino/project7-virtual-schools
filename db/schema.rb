@@ -127,6 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_093237) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "questions", on_delete: :cascade
   add_foreign_key "schools", "owners"
 end
