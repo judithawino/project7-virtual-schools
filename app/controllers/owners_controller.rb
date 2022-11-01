@@ -1,5 +1,5 @@
 class OwnersController < ApplicationController
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     rescue_from ActiveRecord::RecordNotFound, with: :render_owner_not_found_response
 
