@@ -1,5 +1,4 @@
-class ExamsController < ApplicationController
-  skip_before_action :authorize
+class ExamsController < ApplicationController  
     rescue_from ActiveRecord::RecordNotFound, with: :exam_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 

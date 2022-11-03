@@ -1,5 +1,4 @@
-class ResourcesController < ApplicationController
-    skip_before_action :authorize
+class ResourcesController < ApplicationController    
     rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 # require 'jwt'
