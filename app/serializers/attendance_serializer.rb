@@ -1,3 +1,5 @@
 class AttendanceSerializer < ActiveModel::Serializer
-  attributes :id, :percentage, :lesson_id, :student_id
+  attributes :id, :percentage
+  belongs_to :student, serializer: AttendancewithstudentsSerializer
+  belongs_to :lesson, serializer: AttendancewithlessonsSerializer
 end
