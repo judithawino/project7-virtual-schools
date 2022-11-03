@@ -14,17 +14,16 @@ class DiscussionsController < ApplicationController
     end
    
     def create 
-        # student = Student.find(decoded_token[0]["student_id"])
-        # discussion = student.discussions.create!(discussion_params)
+        student = Student.find(decoded_token[0]["student_id"])
+        discussion = student.discussions.create!(discussion_params)
         discussion = Discussion.create!(discussion_params)
         render json: discussion, status: :created
     end
    
     def update
-        # student = Student.find(decoded_token[0]["student_id"])
+        student = Student.find(decoded_token[0]["student_id"])
         discussion = find_discussion
-        # student.discussions.update!(discussion_params)
-        discussion.update!(discussion_params)
+        student.discussions.update!(discussion_params)        
         render json: discussion, status: :created
     end
     

@@ -44,9 +44,19 @@ class ApplicationController < ActionController::API
     end
   
     def logged_in?
+     if !!current_owner
       !!current_owner
+      
+     elsif !!current_user 
       !!current_user
-      !!current_student      
+      
+     else
+      !!current_student 
+      
+     end
+      # !!current_owner
+      # !!current_user
+      # !!current_student      
     end
   
     def authorize

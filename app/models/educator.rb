@@ -19,7 +19,7 @@ class Educator < ApplicationRecord
 
   def emailbait?
     if EMAIL_PATTERNS.none? { |pat| pat.match email }
-      errors.add(:email, "write the correct email address")
+      errors.add(:email, "Invalid")
     end
   end
 

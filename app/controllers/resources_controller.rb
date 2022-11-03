@@ -15,8 +15,8 @@ class ResourcesController < ApplicationController
     end    
 
     def create 
-        # educator = Educator.find(decoded_token[0]["educator_id"])        
-        resource = Resource.create!(resource_params) 
+        educator = Educator.find(decoded_token[0]["educator_id"])        
+        resource = educator.resources.create!(resource_params) 
         render json: resource, status: :created
         # respond_to do |format|
         #     if resource.save
@@ -32,7 +32,7 @@ class ResourcesController < ApplicationController
 
     def update
         # respond_to do |format|
-        # educator = Educator.find(decoded_token[0]["educator_id"])
+        educator = Educator.find(decoded_token[0]["educator_id"])
         resource = find_resource
         resource.update!(resource_params)
         show
@@ -51,7 +51,7 @@ class ResourcesController < ApplicationController
         resource.destroy
         head :no_content
         # respond_to do |format|
-        #     # format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
+        #     # format.html { redirect_to recipes_url, notice: 'Educator was successfully destroyed.' }
         #     format.json { head :no_content }        
         # end
     end
@@ -64,7 +64,7 @@ class ResourcesController < ApplicationController
     end
 
     def resource_params 
-        params.permit(:title, :url, :educator_id)
+        params.permit(:title, :attachment, :educator_id)
     end
 
     # displaying an error message for an nonexistent resource

@@ -1,5 +1,4 @@
 class AttendancesController < ApplicationController
-    skip_before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
    
@@ -16,15 +15,15 @@ class AttendancesController < ApplicationController
     end
     
     def create 
-        # educator = Educator.find(decoded_token[0]["educator_id"])
-        attendance = Attendance.create!(attendance_params)
+        educator = Educator.find(decoded_token[0]["educator_id"])
+        attendance = educator.attendances.create!(attendance_params)
         render json: attendance
     end
     
     def update
-        # educator = Educator.find(decoded_token[0]["educator_id"])
+        educator = Educator.find(decoded_token[0]["educator_id"])
         attendance = find_attendance
-        attendance.update!(attendance_params)
+        educator.attendances.update!(attendance_params)
         render json: attendance
     end
     

@@ -24,9 +24,7 @@ class Owner < ApplicationRecord
   confirmation: true, 
   on: :create 
   validate :emailbait?
-  # validate :contactbait?
-
-  EMAIL_PATTERNS = [
+   EMAIL_PATTERNS = [
     /@admin.com/i
     # /Secret/i,
     # /Top \d/i,
@@ -35,7 +33,7 @@ class Owner < ApplicationRecord
 
   def emailbait?
     if EMAIL_PATTERNS.none? { |pat| pat.match email }
-      errors.add(:email, "write the correct email address")
+      errors.add(:email, "Invalid")
     end
   end
 
@@ -45,10 +43,10 @@ class Owner < ApplicationRecord
   #   /[0-9]/i   
   # ] 
 
-  def contactbait?
-    if CONTACT_PATTERNS.none? { |pat| pat.match phone_contact }
-      errors.add(:phone_contact, "Enter a valid phone number")
-    end
-  end
+  # def contactbait?
+  #   if CONTACT_PATTERNS.none? { |pat| pat.match phone_contact }
+  #     errors.add(:phone_contact, "Enter a valid phone number")
+  #   end
+  # end
 
 end

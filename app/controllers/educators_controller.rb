@@ -17,11 +17,10 @@ class EducatorsController < ApplicationController
     end
     
     def create
-        # owner = Owner.find(decoded_token[0]["owner_id"])        
-        educator = Educator.create!(educator_params)        
-        # token = encode_token(educator_id: educator.id)
-        # render json: { educator: EducatorSerializer.new(educator), jwt: token }
-        render json: educator, status: :created
+        owner = Owner.find(decoded_token[0]["owner_id"])        
+        educator = owner.educators.create!(educator_params)        
+        token = encode_token(educator_id: educator.id)
+        render json: { educator: EducatorSerializer.new(educator), jwt: token }, status: :created        
     end
     
     def update

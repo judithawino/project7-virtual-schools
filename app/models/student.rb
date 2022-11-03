@@ -1,8 +1,9 @@
 class Student < ApplicationRecord
     belongs_to :school
     belongs_to :course
-    has_many :discussions
-    has_many :attendances
+    has_many :discussions, dependent: :destroy
+    has_many :attendances, dependent: :destroy
+    has_many :answers, dependent: :destroy
     has_many :lessons, through: :attendances
     # has_many :exam, through: :course
     has_secure_password
@@ -21,7 +22,7 @@ class Student < ApplicationRecord
 
   def emailbait?
     if EMAIL_PATTERNS.none? { |pat| pat.match email }
-      errors.add(:email, "write the correct email address")
+      errors.add(:email, "Invalid")
     end
   end
 end

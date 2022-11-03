@@ -1,5 +1,4 @@
-class QuestionsController < ApplicationController
-    skip_before_action :authorize
+class QuestionsController < ApplicationController    
     rescue_from ActiveRecord::RecordNotFound, with: :question_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entitiy_response
 
@@ -19,15 +18,15 @@ class QuestionsController < ApplicationController
 
     # POST "/questions"
     def create
-        # educator = Educator.find(decoded_token[0]["educator_id"])
-        # questions = educator.questions.create!(question_params)
+        educator = Educator.find(decoded_token[0]["educator_id"])
+        questions = educator.questions.create!(question_params)
         questions = Question.create!(question_params)
         render json: questions, status: :created
     end
 
     # PATCH "/questions/:id"
     def update
-        # educator = Educator.find(decoded_token[0]["educator_id"])
+        educator = Educator.find(decoded_token[0]["educator_id"])
         questions = find_question
         questions.update!(question_params)
         show

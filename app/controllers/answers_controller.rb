@@ -1,5 +1,4 @@
-class AnswersController < ApplicationController
-    skip_before_action :authorize
+class AnswersController < ApplicationController    
 rescue_from ActiveRecord::RecordNotFound, with: :render_answer_not_found_response
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
@@ -12,13 +11,15 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
 
     def create
-        answer = Answer.create!(answer_params)
+        student = Student.find(decoded_token[0]["student_id"])
+        answer = student.answers.create!(answer_params)
         render json: answer, status: :created
     end
 
     def update
+        student = Student.find(decoded_token[0]["student_id"])
         answer = find_answer
-        answer.update!(answer_params)
+        student.answers.update!(answer_params)
         render json: answer, status: :created
     end
 

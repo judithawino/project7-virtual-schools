@@ -19,13 +19,15 @@ class CoursesController < ApplicationController
 
        
     def create 
-        course = Course.create!(course_params)
+        owner = Owner.find(decoded_token[0]["owner_id"])
+        course = owner.courses.create!(course_params)
         render json: course
     end
 
     def update
+        owner = Owner.find(decoded_token[0]["owner_id"])
         course = find_course
-        course.update!(course_params)
+        owner.courses.update!(course_params)
         render json: course
     end
 
